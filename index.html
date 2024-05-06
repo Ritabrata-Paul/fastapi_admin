@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FastAPI Homepage</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?cs=srgb&dl=pexels-rovenimages-com-344613-949587.jpg&fm=jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .navbar {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      margin-left: 20px; 
+    }
+    .navbar a:hover {
+      color: #ffc107;
+      font-weight: bold; /* Added font-weight on hover */
+    }
+    h1 {
+      text-align: center;
+      font-size: 3em;
+      color: #2d68bf;
+      margin-top: 300px;
+      transition: color 0.3s ease, font-size 0.3s ease;
+    }
+
+    /* Responsive Styles */
+    @media only screen and (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+        margin-top: 100px;
+      }
+    }
+
+    /* Hover Effects */
+    h1:hover {
+      color: #e5ebf2;
+      font-size: 3.2em;
+    }
+
+    .navbar a:hover {
+      color: #ffc107;
+      font-weight: bold;
+    }
+
+    /* Additional Text Styles */
+    p {
+      font-size: 1.2em;
+      margin-top: 20px;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="/">Home</a>
+    <div>
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+    </div>
+  </div>
+  <h1>Welcome to ADMIN App!</h1>
+  <p>This is a homepage for the ADMIN App with the help of FastAPI.</p>
+</body>
+</html>

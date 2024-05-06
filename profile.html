@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?cs=srgb&dl=pexels-rovenimages-com-344613-949587.jpg&fm=jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .navbar {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      margin-left: 20px; /* Add gap to the right of the home button */
+    }
+    .navbar a:hover {
+      color: #ffc107;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
+      margin-top: 60px; /* Adjusted to accommodate navbar */
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label, input {
+      margin-bottom: 15px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="submit"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #f0f0f0; /* Light grey */
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="submit"]:hover {
+      background-color: #e0e0e0; /* Lighter grey on focus/hover */
+    }
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="/">Home</a>
+  </div>
+  <div class="container">
+    <h2 style="text-align: center;">User Profile</h2>
+    <form id="profileForm">
+      <label for="userId">User ID:</label>
+      <input type="text" id="userId" name="user_id" required placeholder="12345">
+      
+      <label for="userName">Username:</label>
+      <input type="text" id="userName" name="user_name" required placeholder="John Doe">
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="john.doe@example.com">
+      
+      <label for="password">New Password:</label>
+      <input type="password" id="password" name="password" required>
+      
+      <input type="submit" value="Update Profile">
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('profileForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const userId = document.getElementById('userId').value;
+      const userName = document.getElementById('userName').value;
+      const email = document.getElementById('email').value;
+      const newPassword = document.getElementById('password').value;
+
+      // Send update request to backend (replace URL with actual API endpoint)
+      try {
+        const response = await fetch(`/user_account/update/${userId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: userId,
+            user_name: userName,
+            email: email,
+            password: newPassword,
+          }),
+        });
+
+        if (response.ok) {
+          alert('Profile updated successfully!');
+          window.location.href = '/'; // Redirect to index page after successful profile update
+        } else {
+          const data = await response.json();
+          alert(data.detail || 'Profile update failed');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Profile update failed. Please try again later.');
+      }
+    });
+  </script>
+</body>
+</html>

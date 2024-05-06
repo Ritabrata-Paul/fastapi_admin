@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?cs=srgb&dl=pexels-rovenimages-com-344613-949587.jpg&fm=jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .navbar {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      margin-left: 20px;
+    }
+    .navbar a:hover {
+      color: #ffc107;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label, input {
+      margin-bottom: 15px;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #f0f0f0; /* Light grey */
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="submit"]:hover {
+      background-color: #e0e0e0; /* Lighter grey on focus/hover */
+    }
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+    }
+    .loader {
+      border: 8px solid #f3f3f3; /* Light grey */
+      border-top: 8px solid #3498db; /* Blue */
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 2s linear infinite;
+      margin: 20px auto;
+      display: none;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @media only screen and (max-width: 600px) {
+      .container {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="/" style="margin-right: auto;">Home</a>
+  </div>
+  <div class="container">
+    <h2 style="text-align: center;">User Login</h2>
+    <form id="loginForm">
+      <label for="userId">User ID:</label>
+      <input type="text" id="userId" name="user_id" required>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      
+      <input type="submit" value="Login">
+    </form>
+    <div id="loader" class="loader"></div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const userId = document.getElementById('userId').value;
+      const password = document.getElementById('password').value;
+
+      // Display loader
+      document.getElementById('loader').style.display = 'block';
+
+      // Simulate a delay for demonstration purposes (you can remove this in production)
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      // Redirect to profile page
+      window.location.href = '/profile';
+    });
+  </script>
+</body>
+</html>
